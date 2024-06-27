@@ -84,30 +84,30 @@ function showCharacters(data) {
 
 // show list of pages
 function displayPagination(pagesCount) {
-  const paginationEl = document.querySelector(".pagination");
-  paginationEl.innerHTML = ""; // clear previous pagination
+  const paginationElement = document.querySelector(".pagination");
+  paginationElement.innerHTML = ""; // clear previous pagination
 
-  const ulEl = document.createElement("ul");
-  ulEl.classList.add("pagination__list");
+  const ulElement = document.createElement("ul");
+  ulElement.classList.add("pagination__list");
 
   for (let i = 1; i <= pagesCount; i++) {
     const liEl = displayPaginationBtn(i);
-    ulEl.appendChild(liEl);
+    ulElement.appendChild(liEl);
   }
 
-  paginationEl.appendChild(ulEl);
-  paginationEl.style.display = "flex";
+  paginationElement.appendChild(ulElement);
+  paginationElement.style.display = "flex";
 }
 
 // create buttons of list of pages
 function displayPaginationBtn(page) {
-  const liEl = document.createElement("li");
-  liEl.classList.add("pagination__item");
-  liEl.innerText = page;
+  const liElement = document.createElement("li");
+  liElement.classList.add("pagination__item");
+  liElement.innerText = page;
 
-  if (currentPage === page) liEl.classList.add("pagination__item--active");
+  if (currentPage === page) liElement.classList.add("pagination__item--active");
 
-  liEl.addEventListener("click", () => {
+  liElement.addEventListener("click", () => {
     currentPage = page;
     getAllCharacters(API_URL_GET_ALL, currentPage); // update data
 
@@ -115,17 +115,17 @@ function displayPaginationBtn(page) {
     if (currentItemLi) {
       currentItemLi.classList.remove("pagination__item--active");
     }
-    liEl.classList.add("pagination__item--active");
+    liElement.classList.add("pagination__item--active");
     scrollToTop();
   });
 
-  return liEl;
+  return liElement;
 }
 
 // hide list of pages
 function hidePagination() {
-  const paginationEl = document.querySelector(".pagination");
-  paginationEl.style.display = "none";
+  const paginationElement = document.querySelector(".pagination");
+  paginationElement.style.display = "none";
 }
 
 // scroll to top of page
@@ -199,7 +199,7 @@ function main() {
   // updating pagination due to search results
   document.querySelector(".pagination").addEventListener("click", (e) => {
     if (e.target.classList.contains("pagination__item")) {
-      currentPage = parseInt(e.target.innerText); // Устанавливаем текущую страницу
+      currentPage = parseInt(e.target.innerText);
       const searchValue = search.value.trim();
       searchByName(API_URL_SEARCH_NAME_CHARACTER, searchValue, currentPage);
       scrollToTop();
